@@ -23,6 +23,11 @@ export class IssuesService {
     this.issues.push(issue);
   }
 
+  editIssue(issue: Issue) {
+    let issueIndex = this.issues.findIndex(el => el.issueNo === issue.issueNo);
+    this.issues[issueIndex] = issue;
+  }
+
   completeIssue(issue: Issue) {
     const selectedIssue: Issue = {
       ...issue,

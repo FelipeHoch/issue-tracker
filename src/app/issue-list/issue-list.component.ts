@@ -8,15 +8,18 @@ import { IssuesService } from '../issues.service';
   styleUrls: ['./issue-list.component.css']
 })
 export class IssueListComponent implements OnInit {
-
   showReportIssue = false;
+
+  editReportIssue = false;
+
+  issueSelectedToEdit: Issue | null = null; 
 
   selectedIssue: Issue | null = null;
 
   constructor(
     private issueService: IssuesService
   ) { }
-  
+
   issues: Issue[] = [];
 
   ngOnInit(): void {
@@ -28,8 +31,14 @@ export class IssueListComponent implements OnInit {
     this.getIssues();
   }
 
+  onEditReport() {
+    this.editReportIssue = false;
+    this.issueSelectedToEdit = null;
+    this.getIssues();
+  }
+
   onConfirm(confirmed: boolean) {
-    if(confirmed && this.selectedIssue) {
+    if (confirmed && this.selectedIssue) {
       this.issueService.completeIssue(this.selectedIssue);
       this.getIssues();
       this.selectedIssue = null;
