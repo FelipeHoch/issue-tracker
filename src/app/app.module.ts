@@ -14,6 +14,7 @@ import { IssueEditComponent } from './issue-edit/issue-edit.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptor } from 'src/interceptor';
 import { HashPipe } from './test.pipe';
+import { TestDirective } from 'src/directives/test-directive.directive';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HashPipe } from './test.pipe';
     IssueReportComponent,
     ConfirmDialogComponent,
     IssueEditComponent,
-    HashPipe
+    HashPipe,
+    TestDirective,
   ],
   imports: [
     CommonModule,
