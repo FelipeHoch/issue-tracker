@@ -46,5 +46,5 @@
 <app-issue-edit *ngIf="editReportIssue === true" [issue]="issueSelectedToEdit" (formClose)="onEditReport()">
 </app-issue-edit>
 
-<app-confirm-dialog *ngIf="selectedIssue" [issueNo]="selectedIssue.issueNo" (confirm)="onConfirm($event)">
+<app-confirm-dialog *ngIf="selectedIssue" [issueNo]="selectedIssue.issueNo!" (confirm)="onConfirm($event)">
 </app-confirm-dialog>

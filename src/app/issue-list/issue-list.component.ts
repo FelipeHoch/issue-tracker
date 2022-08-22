@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ShareDataService } from 'src/services/share-data.service';
 import { Issue } from '../issue';
 import { IssuesService } from '../issues.service';
 
@@ -17,13 +19,17 @@ export class IssueListComponent implements OnInit {
   selectedIssue: Issue | null = null;
 
   constructor(
-    private issueService: IssuesService
+    private issueService: IssuesService,
+    private httpClient: HttpClient,
+    private shareDataService: ShareDataService,
   ) { }
 
   issues: Issue[] = [];
 
   ngOnInit(): void {
     this.getIssues();
+
+    this.shareDataService.getIssue().subscribe((issue: Issue) => console.log(issue));
   }
 
   onCloseReport() {
@@ -48,5 +54,4 @@ export class IssueListComponent implements OnInit {
   private getIssues() {
     this.issues = this.issueService.getPendingIssues();
   }
-
 }

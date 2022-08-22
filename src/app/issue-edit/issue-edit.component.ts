@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 import { IssuesService } from '../issues.service';
 import { Issue } from '../issue';
+import { ShareDataService } from 'src/services/share-data.service';
 
 @Component({
   selector: 'app-issue-edit',
@@ -18,7 +19,8 @@ export class IssueEditComponent implements OnInit {
 
   constructor(
     private builder: FormBuilder,
-    private issueService: IssuesService
+    private issueService: IssuesService,
+    private shareIssueService: ShareDataService,
   ) { }
 
   ngOnInit(): void {
@@ -34,8 +36,11 @@ export class IssueEditComponent implements OnInit {
   editIssue() {
     if (this.issueForm && this.issueForm.invalid) {
       this.issueForm.markAllAsTouched();
+
       return;
     }
+
+    this.shareIssueService.setIssue(this.issueForm!.value);
 
     this.issueService.editIssue(this.issueForm?.value);
     this.formClose.emit();

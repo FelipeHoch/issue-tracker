@@ -11,6 +11,9 @@ import { IssueReportComponent } from './issue-report/issue-report.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CommonModule } from '@angular/common';
 import { IssueEditComponent } from './issue-edit/issue-edit.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyInterceptor } from 'src/interceptor';
+import { HashPipe } from './test.pipe';
 
 
 @NgModule({
@@ -19,7 +22,8 @@ import { IssueEditComponent } from './issue-edit/issue-edit.component';
     IssueListComponent,
     IssueReportComponent,
     ConfirmDialogComponent,
-    IssueEditComponent
+    IssueEditComponent,
+    HashPipe
   ],
   imports: [
     CommonModule,
@@ -27,8 +31,11 @@ import { IssueEditComponent } from './issue-edit/issue-edit.component';
     ClarityModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

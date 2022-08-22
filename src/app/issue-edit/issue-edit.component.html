@@ -10,7 +10,7 @@
 
     <clr-textarea-container>
         <label>Description</label>
-        <textarea clrTextarea formControlName="description"></textarea>
+        <textarea clrTextarea formControlName="description" [value]="issueForm.get('description')!.value | hash"></textarea>
 
         <clr-control-error>Description is required</clr-control-error>
     </clr-textarea-container>
